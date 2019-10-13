@@ -1,0 +1,326 @@
+#include <iostream>
+#include<string>
+#include<bits/stdc++.h>
+
+using namespace std;
+
+class pdetail
+{
+    char name[20];
+    char dob[20];
+    char bgroup[5];
+    char dlicence[10];
+    int age;
+
+    public:
+
+        //constructor
+        pdetail(char *name1,char *dob1,char *bgro1,char *dlic)
+        {
+
+            strcpy(name,name1);
+            strcpy(dob,dob1);
+            strcpy(bgroup,bgro1);
+            strcpy(dlicence,dlic);
+        }
+
+        void diplay1()
+        {
+            cout<<name<<"\t\t";
+            cout<<dob<<"\t\t";
+            cout<<bgroup<<"\t\t";
+            cout<<dlicence<<"\t\t";
+            //cout<<age1;
+        }
+
+        void up1(char *x,char *y,char *z)
+        {
+          strcpy(name,x);
+          strcpy(dob,y);
+          strcpy(bgroup,z);
+        }
+
+       int searchi(char *tem1)
+        {
+            if(strcmp(tem1,dlicence)==0)
+                return 1;
+
+            else
+                return 0;
+        }
+
+
+        int checkun(char *li)
+        {
+              if(strcmp(dlicence,li)==0)
+              {
+                    return 1;
+              }
+
+              return 0;
+        }
+
+};
+
+class phydetail
+{
+    float height;
+    float weight;
+
+    public:
+
+        //constructor
+        phydetail(float hei1,float wei1)
+        {
+            height=hei1;
+            weight=wei1;
+        }
+
+        void display2()
+        {
+            cout<<height<<"\t\t";
+            cout<<weight<<"\t\t";
+        }
+
+        void up2(float x,float y)
+        {
+          height=x;
+          weight=y;
+        }
+};
+
+class inspolicy:public pdetail,public phydetail
+{
+
+    char pno[10];
+    char padd[40];
+
+    public:
+
+        //constructor
+        inspolicy(char *name1,char *dob1,char *bgro1,float hei1,float wei1,char *pno1,char *padd1,char *dlic):pdetail(name1,dob1,bgro1,dlic),phydetail(hei1,wei1)
+        {
+         strcpy(pno,pno1);
+         strcpy(padd,padd1);
+        }
+
+
+        void display3()
+        {
+            cout<<pno<<"\t\t";
+            cout<<padd<<"\t\t";
+        }
+
+        void up3(char *x,char *y)
+        {
+          strcpy(pno,x);
+          strcpy(padd,y);
+        }
+};
+
+int main()
+{
+
+    int ch;
+    inspolicy *p[20];
+    char name1[20],dob1[20],bgro1[5],padd1[40],pno1[10],dlic[10],tem[10];
+    float wei1,hei1;
+    int i=0,siz=0,fl,flag2;
+    int frai;
+
+    do{
+    y:
+    cout<<"\n\n1. enter the master table !!"<<endl;
+    cout<<"2. display !!"<<endl;
+    cout<<"3. insert a new entry !!"<<endl;
+    cout<<"4. delete entry !!"<<endl;
+    cout<<"5. edit !!"<<endl;
+    cout<<"6. search for a record !!"<<endl;
+    cout<<"7. exit !"<<endl;
+    cout<<endl;
+
+
+    cout<<"enter your choice = ";
+    cin>>ch;
+
+    switch(ch)
+    {
+        case 1:
+
+            //i=0;
+            char cc;
+
+            x:
+
+            frai=0;
+            cout<<endl<<endl;
+            cout<<"enter the name = ";cin>>name1;
+            cout<<"enter the dob = ";cin>>dob1;
+            cout<<"enter the blood group = ";cin>>bgro1;
+            bv:
+            cout<<"enter the license number (unique)= ";cin>>dlic;
+            // check for unique key
+            for(i=0;i<siz;i++)
+            {
+                  frai=p[i]->checkun(dlic);
+                  if(frai==1)
+                  {
+                        cout<<"\nTHIS LIC number already exist please enter a unique lic no !!!\n\n";
+                        goto bv;
+                  }
+            }
+            cout<<"enter the height = ";cin>>hei1;
+            cout<<"enter the weight = ";cin>>wei1;
+            cout<<"enter the policy agent number = ";cin>>pno1;
+            cout<<"enter the policy address = ";cin>>padd1;
+
+            p[i]=new inspolicy(name1,dob1,bgro1,hei1,wei1,pno1,padd1,dlic);
+            i++;
+            siz=i;
+
+            cout<<"\ndo you wanna enter more = ";
+            cin>>cc;
+
+            if(cc=='y')
+                {
+                  goto x;
+                }
+            else
+            { siz=i;
+              goto y;
+            }
+
+        case 2:
+
+            cout<<"name\t\tdob\t\tblood\t\tlicense\t\theight\t\tweight\t\tpolicy numb\t\taddress"<<endl;
+            cout<<endl;
+
+            for(i=0;i<siz;i++)
+            {
+                p[i]->diplay1();
+                p[i]->display2();
+                p[i]->display3();
+                cout<<endl;
+            }
+
+            break;
+
+        case 3:
+            goto x;
+            break;
+
+        case 4:
+            cout<<"enter the driving lisence number to search and delete the entry : ";
+            cin>>tem;
+
+            fl=0;
+
+            for(int i=0;i<siz;i++)
+            {
+                fl=p[i]->searchi(tem);
+                if(fl==1)
+                {
+                  flag2=i;
+                  break;
+                }
+            }
+            if(flag2!=siz-1)
+            {
+                for(int i=flag2;i<siz-1;i++)
+                {
+                  *p[i]=*p[i+1];  // copy all data
+                }
+                //delete(p[])
+           }
+           delete(p[siz-1]);
+           siz=siz-1;
+           break;
+
+
+        case 5:
+                  cout<<"\nenter the license no of the entry to be edited : ";
+                  cin>>tem;
+
+                  fl=0;
+
+                  for(int i=0;i<siz;i++)
+                  {
+                      fl=p[i]->searchi(tem);
+                      //cout<<fl<<endl;
+                      if(fl==1)
+                      {
+                        flag2=i;
+                        break;
+                      }
+                  }
+
+                  if(fl==1)
+                  {
+
+                          cout<<"1. for name,dob,bloodgroup\n";
+                          cout<<"2. for height and weight\n";
+                          cout<<"3. for policy agent no and address\n\n";
+
+                          cout<<"enter your choice : ";
+                          cin>>ch;
+                          switch(ch)
+                          {
+                                case 1:
+                                cout<<endl<<endl;
+                                cout<<"enter the name = ";cin>>name1;
+                                cout<<"enter the dob = ";cin>>dob1;
+                                cout<<"enter the blood group = ";cin>>bgro1;
+                                p[flag2]->up1(name1,dob1,bgro1);
+                                break;
+
+
+                                case 2:
+                                cout<<"enter the height = ";cin>>hei1;
+                                cout<<"enter the weight = ";cin>>wei1;
+                                p[flag2]->up2(hei1,wei1);
+                                break;
+
+                                case 3:
+                                cout<<"enter the policy agent number = ";cin>>pno1;
+                                cout<<"enter the policy address = ";cin>>padd1;
+                                p[flag2]->up3(pno1,padd1);
+                                break;
+
+                          }
+
+                          cout<<"\n\nTHe CHANGES HAS BEEN MADE !!\n\n";
+                      }
+                      else
+                      {
+                            cout<<"SEARCHED DATA NOT FOUND !!!\n\n";
+                      }
+                  break;
+
+        case 6:
+            cout<<"\nenter the license no to be dispalyed : ";
+            cin>>tem;
+            for(int i=0;i<siz;i++)
+            {
+                fl=p[i]->searchi(tem);
+                if(fl==1)
+                {
+                  flag2=i;
+                  break;
+                }
+            }
+
+            cout<<"name\t\tdob\t\tblood\t\tlicense\t\theight\t\tweight\t\tpolicy numb\t\taddress"<<endl;
+            cout<<endl;
+
+            p[flag2]->diplay1();
+            p[flag2]->display2();
+            p[flag2]->display3();
+            cout<<endl;
+            break;
+
+        case 7:
+            exit(0);
+        }
+      }while(1);
+    return 0;
+}

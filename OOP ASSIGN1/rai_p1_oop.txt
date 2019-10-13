@@ -1,0 +1,208 @@
+CODE :
+
+#include<iostream>
+using namespace std;
+class wheather
+{
+   int ht,lt,ar,as;
+   static int Aht,Alt,Aar,Aas;
+   public:
+
+   wheather()
+   {
+    ht=0;
+    lt=0;
+    ar=0;
+    as=0;
+   }
+   void getdata();
+   void displaydata(int dayno);
+   void average(int );
+};
+int wheather::Aht;
+int wheather::Alt;
+int wheather::Aar;
+int wheather::Aas;
+void wheather::getdata()
+{
+  cout<<"Enter data for days:";
+  cout<<"Hightemp   Lowtemp    Avgrain    Avgsnow:\n";
+  cin>>ht>>lt>>ar>>as;
+  Aht+=ht;
+  Alt+=lt;
+  Aar+=ar;
+  Aas+=as;
+}
+void wheather::displaydata(int dayno)
+{
+  cout<<"\n"<<dayno<<"       "<<ht<<"          "<<lt<<"         "<<ar<<"      "<<as<<"\n";
+}
+void wheather::average(int n)
+{
+    cout<<"\n "<<"Avg     "<<wheather::Aht/n<<"          "<<wheather::Alt/n<<"         "<<wheather::Aar/n<<"      "<<wheather::Aas/n<<"\n";
+}
+
+int main()
+{
+  wheather w[31];
+  int c,n,dayno,i;
+  c=1;
+  while(c!=5)
+  {
+    cout<<"::::MENU::::";
+    cout<<"\nEnter your choice:";
+    cout<<"\n1.Enter data\n2.display specific\n3.display all\n4.monthly report\n5.quit\n";
+    cin>>c;
+    switch(c)
+    {
+     case 1:cout<<"\nEnter number of days:";
+            cin>>n;
+            for(i=0;i<n;i++)
+            {
+              cout<<"\nEnter the day no:";
+              cin>>dayno;
+              w[dayno].getdata();
+            }
+            break;
+     case 2:cout<<"\nEnter the dayno:";
+            cin>>dayno;
+            cout<<"Dayno   Hightemp   Lowtemp   Rain   Snow   \n";
+            w[dayno].displaydata(dayno);
+            break;
+     case 3:cout<<"\n::::::::::::::::::TABLE::::::::::::::::::::\n";
+            cout<<"\nDayno   Hightemp   Lowtemp   Rain   Snow   ";
+            for(i=1;i<31;i++)
+            {
+              w[i].displaydata(i);
+            }cout<<"\n";
+            break;
+     case 4:cout<<"\nMonthly report:";
+            cout<<"\nDayno   Hightemp   Lowtemp   Rain   Snow   ";
+            for(i=1;i<31;i++)
+            {
+              w[i].displaydata(i);
+            }
+            w[0].average(n);
+            break;
+     case 5:cout<<"Thank for visit";
+            break;
+    }
+  }
+  return 0;
+}
+
+
+OUTPUT :
+
+::::MENU::::
+Enter your choice:
+1.Enter data
+2.display specific
+3.display all
+4.monthly report
+5.quit
+1
+
+Enter number of days:3
+
+Enter the day no:2
+Enter data for days:Hightemp   Lowtemp    Avgrain    Avgsnow:
+41
+35
+40
+40
+
+Enter the day no:4
+Enter data for days:Hightemp   Lowtemp    Avgrain    Avgsnow:
+40
+32
+30
+30
+
+Enter the day no:6
+Enter data for days:Hightemp   Lowtemp    Avgrain    Avgsnow:
+40
+33
+30
+30
+::::MENU::::
+Enter your choice:
+1.Enter data
+2.display specific
+3.display all
+4.monthly report
+5.quit
+3
+
+::::::::::::::::::TABLE::::::::::::::::::::
+
+Dayno   Hightemp   Lowtemp   Rain   Snow
+1       0          0         0      0
+
+2       41          35         40      40
+
+3       0          0         0      0
+
+4       40          32         30      30
+
+5       0          0         0      0
+
+6       40          33         30      30
+
+7       0          0         0      0
+
+8       0          0         0      0
+
+9       0          0         0      0
+
+10       0          0         0      0
+
+11       0          0         0      0
+
+12       0          0         0      0
+
+13       0          0         0      0
+
+14       0          0         0      0
+
+15       0          0         0      0
+
+16       0          0         0      0
+
+17       0          0         0      0
+
+18       0          0         0      0
+
+19       0          0         0      0
+
+20       0          0         0      0
+
+21       0          0         0      0
+
+22       0          0         0      0
+
+23       0          0         0      0
+
+24       0          0         0      0
+
+25       0          0         0      0
+
+26       0          0         0      0
+
+27       0          0         0      0
+
+28       0          0         0      0
+
+29       0          0         0      0
+
+30       0          0         0      0
+
+::::MENU::::
+Enter your choice:
+1.Enter data
+2.display specific
+3.display all
+4.monthly report
+5.quit
+
+
