@@ -1,51 +1,37 @@
-#include<iostream>
 #include<bits/stdc++.h>
-
 using namespace std;
 
 //base class
 class shape
 {
-  float x;
-  float y;
+  double x;
+  double y;
 
   public:
-
-    float getdata()
+    double getdata()
     {
-      float x1,y1;
-      cout<<"\nenter the data : ";
-      cout<<endl<<endl;
+      double x1,y1;
+      cout<<"enter the data :: "<<"\n";
       cout<<"enter the value of x = ";
       cin>>x1;
       cout<<"enter the value of y = ";
       cin>>y1;
-
-      x=x1;
-      y=y1;
-
-      return x*y;
+      return x1*y1;
     }
 
     // pure virtual function
     virtual void compute_area()=0;
-   /*{
-      cout<<"base class";
-    }*/
-
 };
 
 //derived class1
 class triangle:public shape
 {
-  float area1;
+  double area1;
 
   public:
 
   void compute_area()
   {
-
-    //cout<<"derived class triangle"<<endl;
     area1=getdata();
     cout<<"\nthe area of triangle is = ";
     cout<<area1/2<<endl;
@@ -55,13 +41,12 @@ class triangle:public shape
 //derived class 2
 class rectangle:public shape
 {
-  float area2;
+  double area2;
 
   public:
 
     void compute_area()
     {
-      //cout<<"\nderived class rectangle"<<endl;
       area2=getdata();
       cout<<"\nthe area of the rectangle is = ";
       cout<<area2<<endl;
@@ -106,7 +91,7 @@ int main()
             {
               exit(0);
             }
-        default:
+            default:
             cout<<"you entered wrong choice !!"<<endl;
             break;
     }
