@@ -1,5 +1,7 @@
 #include<iostream>
 #include<bits/stdc++.h>
+#define ll long long
+#define sz(v) (int)v.size()
 using namespace std;
 struct ll
 {
@@ -49,13 +51,6 @@ class stk
 		top = top->next;
 		delete ptr;
 	}
-	/*void stack_top(){
-		if(top==NULL){
-			cout<<"The Stack is Empty\n";
-			return;
-		}
-		cout<<top->data;
-	}*/
 	bool chp(char a,char b)
 	{
 		char op[4] = {'*','/','+','-'};
