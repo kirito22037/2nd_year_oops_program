@@ -197,12 +197,12 @@ int main()
 	int ch;
 	do
     {
-        cout<<"\n1.Infix To Postfix\n2.Infix to Prefix\n3.Postfix Evaluation\n4.Prefix Evaluation\n5.Exit >> ";
+       
         cin>>ch;
         switch(ch)
         {
             case 1 :s1.post(inf,opo);
-                    cout<<"Postfix Expression for the Given Expression is :: ";
+                    
                     cout<<opo<<"\n";
                     break;
             case 2 :strcpy(in2,inf);
@@ -215,15 +215,15 @@ int main()
                     }
                     s1.post(in2,opr);
                     strcpy(opr2,opr);
-                    cout<<"Prefix Expression for the Given Infix Expression is :: ";
+                   
                     cout<<strrev(opr)<<"\n";
                     break;
             case 3 :answ1 = s2.evaluate(inf,opo);
-                    cout<<"\nThe answer is :: "<<answ1<<"\n";
+                    cout<<answ1<<"\n";
                     break;
             case 4 :answ2 = s2.evaluate(inf,opr2);
                     cout<<"\nThe answer is :: "<<answ2<<"\n";
-                    break;
+
                     break;
         }
     }while(ch!=5);
